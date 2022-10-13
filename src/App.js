@@ -15,7 +15,7 @@ function App() {
     <>
       <Tabs color="red" variant="pills" p={20} radius="xl" sx={{ width: "80%"}} mr={"auto"} ml={"auto"} pl={100} pr={100} pt={20} pb={10} defaultValue={"transcribe"}>
         
-        <Card radius={"xl"} >
+        <Card radius={"md"} >
 
         <Tabs.List>
           <Link to={"/"}>
@@ -27,9 +27,9 @@ function App() {
           <Link to={"/finalize"}>
           <Tabs.Tab p={10} value="finalize" icon={<IconFileExport size={14} />}>Finalize</Tabs.Tab>
           </Link>
-          <Link to={"/finalize"}>
+          {/* <Link to={"/finalize"}>
           <Tabs.Tab p={10} value="shortcuts" icon={<IconKeyboardShow size={14} />}>Shortcuts</Tabs.Tab>
-          </Link>
+          </Link> */}
         </Tabs.List>
         </Card>
 

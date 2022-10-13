@@ -13,8 +13,8 @@ function Prepare(props) {
                         <ReactQuill placeholder="Paste the transcribed text here" style={{ whiteSpace: "pre" }} id="theEditorBox" modules={{ toolbar: false }} formats={[]} value={value} onChange={setValue} />
                     </div>
                     <div className="theOutPut">
-                        this is the prepared output <br></br>
-                        wow wow wow wow
+                       This will be the prepared <br></br>
+                        output
                     </div>
                 </SimpleGrid>
             </Card>
