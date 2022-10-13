@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Card, Grid, Group, Kbd, ScrollArea, SimpleGrid, Slider, Text, Textarea, TextInput, Tooltip } from "@mantine/core";
+import { Badge, Box, Button, Card, Grid, Group, Kbd, MantineProvider, ScrollArea, SimpleGrid, Slider, Text, Textarea, TextInput, Tooltip } from "@mantine/core";
 import RichTextEditor from "@mantine/rte";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
@@ -42,7 +42,7 @@ function Transcribe(props) {
     function setVideo(video) {
         localStorage.setItem("currentVideo", video);
         const currentVid = localStorage.getItem("currentVideo");
-        
+
         setYoutubeVideo(() => {
             return currentVid;
         })
@@ -209,7 +209,7 @@ function Transcribe(props) {
 
 
         const currentVid = localStorage.getItem("currentVideo");
-        
+
         setYoutubeVideo(() => {
             return currentVid;
         })
@@ -271,7 +271,7 @@ function Transcribe(props) {
                                     label={playBackSpeed + "x"}
                                     defaultValue={playBackSpeed * 50}
                                     // value={videoChangeProgress}
-                                    variant="gradient" 
+                                    variant="gradient"
                                     gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}
                                     thumbSize={16}
                                     styles={{ thumb: { borderWidth: 2, padding: 3 } }}
@@ -280,7 +280,7 @@ function Transcribe(props) {
                                     onChange={changeSpeed}
                                 />
                                 <TextInput mt={10} onChange={(e) => { setYtUrl(e.target.value) }} placeholder="Youtube Link" radius={"md"}></TextInput>
-                                <Button onClick={() => { setVideo(ytUrl) }} mt={10}  variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} radius={"md"}>Add Video</Button>
+                                <Button onClick={() => { setVideo(ytUrl) }} mt={10} variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} radius={"md"}>Add Video</Button>
                             </Box>
 
 
@@ -308,7 +308,7 @@ function Transcribe(props) {
 
                     <Grid.Col ml={"auto"} span={8} mt={15}>
                         <Group>
-                            <Button variant="light" ref={timestampRef} mb={10} ml={"auto"} radius={"xl"}  onClick={() => { insertAtCaret(currentVideoTimeStamp) }}><IconClock /></Button>
+                            <Button variant="light" ref={timestampRef} mb={10} ml={"auto"} radius={"xl"} onClick={() => { insertAtCaret(currentVideoTimeStamp) }}><IconClock /></Button>
                         </Group>
                         {/* <RichTextEditor
                             ref={richTextEditor}
@@ -322,14 +322,18 @@ function Transcribe(props) {
                             value={(savedTranscribedValue != null && savedTranscribedValue.length > 15) ? savedTranscribedValue : initialState}
                             // value={}
                         /> */}
+                        <MantineProvider theme={{ fontFamily: "monospace" }}>
 
-                        <Textarea autosize
-                        wrap="off"
-                            onChange={(event)=>{setTranscribedValue(event.target.value)}}
-                            defaultValue={(savedTranscribedValue != null && savedTranscribedValue.length > 15) ? savedTranscribedValue : initialState}
-                            ref={richTextEditor}>
+                            <Textarea autosize
+                                wrap="off"
+                                sx={{ fontFamily: "monospace", fontSize: "11px" }}
+                                onChange={(event) => { setTranscribedValue(event.target.value) }}
+                                defaultValue={(savedTranscribedValue != null && savedTranscribedValue.length > 15) ? savedTranscribedValue : initialState}
+                                ref={richTextEditor}>
 
-                        </Textarea>
+                            </Textarea>
+                        </MantineProvider>
+
                         {/* <Textarea autosize minRows={20} ml={"auto"} mr={"auto"} sx={{ width: "80%" }}></Textarea> */}
                     </Grid.Col>
                 </Grid>
