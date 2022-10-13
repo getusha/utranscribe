@@ -233,11 +233,11 @@ function Transcribe(props) {
     }, [handleKeyPress])
     // console.log(typeof forwardRef != "undefined" && forwardRef.current)
 
-    const initialState = `Enter your transcript here... <br>
+    const initialState = `Enter your transcript here... 
 
-	Quick tips: <br><br>
+	Quick tips: 
 
-		- Ctrl+I adds italic formatting and Ctrl+B adds bold formatting. <br><br>
+		- Ctrl+I adds italic formatting and Ctrl+B adds bold formatting. 
 
 		- Press ESC to play/pause, and Ctrl+J to insert the current timestamp.`;
     return (
