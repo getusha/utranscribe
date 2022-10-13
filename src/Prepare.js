@@ -19,7 +19,7 @@ function Prepare(props) {
             // console.log(thePrepareSeekers[i])
             // console.log(myFinalGuess.test)
             if (myFinalGuess.test(thePrepareSeekers[i].outerHTML) == true) {
-                allChilds.push(thePrepareSeekers[i].outerHTML.replace(/<p>/g, `${(i>0) ? "<br><br><p>" : "<p>"}`));
+                allChilds.push(thePrepareSeekers[i].outerHTML.replace(/<p>/g, `${(i>0) ? "<br><br><div><br>" : "<div>"}`));
                 // console.log(allChilds[i])/
             } else {
                 allChilds.push(thePrepareSeekers[i].outerHTML);
