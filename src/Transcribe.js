@@ -142,7 +142,7 @@ function Transcribe(props) {
             return;
         }
 
-        if (event.key == "j") {
+        if (event.key == "g") {
             logTimestamp()
             return;
         }
@@ -189,7 +189,14 @@ function Transcribe(props) {
             }
         },
         {
-            shortcut: 'Ctrl+J', handler: (event) => {
+            shortcut: 'g', handler: (event) => {
+                // Doing something...
+                handleKeyPress(event)
+                return true; // Returning true because we don't want other handlers for the same shortcut to be called later
+            }
+        },
+        {
+            shortcut: 'tt', handler: (event) => {
                 // Doing something...
                 handleKeyPress(event)
                 return true; // Returning true because we don't want other handlers for the same shortcut to be called later
