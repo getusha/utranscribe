@@ -16,7 +16,7 @@ function Transcribe(props) {
     const [ytController, setYtController] = useState({ play: true })
     const [transcribedValue, setTranscribedValue] = useState("");
 
-    const [playVideo, setPlayVideo] = useState(true);
+    const [playVideo, setPlayVideo] = useState(false);
 
     const [videoChangeProgress, setVideoChangeProgress] = useState(0);
     const [currentVideoTimeStamp, setCurrentVideoTimeStamp] = useState(0);
@@ -40,8 +40,11 @@ function Transcribe(props) {
 
 
     function setVideo(video) {
+        localStorage.setItem("currentVideo", video);
+        const currentVid = localStorage.getItem("currentVideo");
+        
         setYoutubeVideo(() => {
-            return video;
+            return currentVid;
         })
     }
 
@@ -205,7 +208,11 @@ function Transcribe(props) {
 
 
 
-
+        const currentVid = localStorage.getItem("currentVideo");
+        
+        setYoutubeVideo(() => {
+            return currentVid;
+        })
 
 
         // switch(keyPressed){
