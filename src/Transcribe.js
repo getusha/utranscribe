@@ -324,6 +324,7 @@ function Transcribe(props) {
                         /> */}
 
                         <Textarea autosize
+                        wrap="off"
                             onChange={(event)=>{setTranscribedValue(event.target.value)}}
                             defaultValue={(savedTranscribedValue != null && savedTranscribedValue.length > 15) ? savedTranscribedValue : initialState}
                             ref={richTextEditor}>
