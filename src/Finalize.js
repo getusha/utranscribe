@@ -17,8 +17,8 @@ function Finalize() {
 
     let finalized;
     let onlyVerses = [];
+    let theChilds;
     function collectChilds() {
-        let theChilds;
         let allChilds = [];
         if (document.querySelector(".ql-editor") != null && document.querySelector(".ql-editor").children.length > 1) {
             theChilds = document.querySelector(".ql-editor").children
@@ -50,15 +50,19 @@ function Finalize() {
                     if (theChilds[i].innerText == "\n") {
                         theChilds[i].outerHTML = "";
                     }
-                    allChilds.push(theChilds[i].outerHTML)
-                    if (timeStamRegex.test(theChilds[i].innerText)) {
-                        console.log(theChilds[i].innerText);
-                        theChilds[i].classList.add("lystyle");
-                        theChilds[i].setAttribute("data-timestamp", theChilds[i].innerText);
-                        //   console.log(theChilds[i].outerHTML.replace(/p>/g, "span>").replace(/<p/, "<span"));
-                        // allChilds.push(theChilds[i].outerHTML.replace(/p>/g, "span>").replace(/<p/, "<span"))
-                        // theChilds[i].innerText = theChilds[i+1].innerText + "\n" + theChilds[i+2].innerText;
-                        // allChilds[i] = ` `;
+
+                    const idk = theChilds[i];
+                    if(typeof idk != "undefined"){
+                     allChilds.push(theChilds[i].outerHTML)
+                     if (timeStamRegex.test(theChilds[i].innerText)) {
+                         console.log(theChilds[i].innerText);
+                         theChilds[i].classList.add("lystyle");
+                         theChilds[i].setAttribute("data-timestamp", theChilds[i].innerText);
+                         //   console.log(theChilds[i].outerHTML.replace(/p>/g, "span>").replace(/<p/, "<span"));
+                         // allChilds.push(theChilds[i].outerHTML.replace(/p>/g, "span>").replace(/<p/, "<span"))
+                         // theChilds[i].innerText = theChilds[i+1].innerText + "\n" + theChilds[i+2].innerText;
+                         // allChilds[i] = ` `;
+                     }
                     }
                 }
 
@@ -68,6 +72,8 @@ function Finalize() {
 
             const joinedChilds = allChilds.join("");
             console.log(joinedChilds)
+            // document.getElementById("joined").innerHTML = joinedChilds;
+
             // const [finalized, setFinalized] = useState("");
 
 
@@ -125,10 +131,17 @@ function Finalize() {
 
     
 
+
+
+    const startingTag = "[bookmarkcwz]";
+    const endingTag =[];
+    // &lt;
+
     return (
         <>
             {/* <Button fullWidth p={5} m={4}>Finalize</Button> */}
             {/* <h1>{value}<  /h1> */}
+            <p id="joined"></p>
         <Card sx={{minHeight: "85vh"}} radius={"md"} ml={10} mr={10}>
             <SimpleGrid cols={2} sx={{width: "100%"}} mr={20} ml={20}>
                 <div className="theEditor">
@@ -140,17 +153,29 @@ function Finalize() {
                     {/* {typeof ref.current != "undefined" ? ref.current?.innerText : ``} */}
                     {/* {ref.current?.innerText} */}
                 {/* </Prism> */}
+
+
+                {
+                    console.log(theVerses)
+                //  theVerses.map((child)=>{
+                //     return(
+                //         <>
+                //         hey
+                //         </>
+                //     )
+                //  })   
+                }
                 <div className="theOutPut" ref={ref}>
-                    {"[bookmarkcwz]"} <br></br>
+                   <span>{startingTag.replace(" ", "")}</span><br></br>
                     {
                         theVerses.map((verse, i) => {
                             return (
                                 <>
                                     {/* <div style={{backgroundColor: "red", margin: "10px"}}> */}
 
-                                    {typeof verse == "string" ? ( i > 0 ? `</span><span class="lystyle" data-timestamp="">\n${verse}\n` : `<span class="lystyle" data-timestamp="">\n${verse}\n`) :
+                                    {typeof verse == "string" ? ( i > 0 ? `</span>\n\n<span class="lystyle" data-timestamp="">\n${verse}\n` : `<span class="lystyle" data-timestamp="">\n${verse}\n`) :
                                         <>
-                                            {i > 0 ? `</span><span class="lystyle" data-timestamp="${verse[0]}">` : `<span class="lystyle" data-timestamp="${verse[0]}">`}
+                                            {i > 0 ? `</span>\n\n<span class="lystyle" data-timestamp="${verse[0]}">` : `<span class="lystyle" data-timestamp="${verse[0]}">`}
                                             {verse.slice(1).map((final, i) => {
                                                 return (
                                                     <>
