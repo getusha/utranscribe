@@ -14,10 +14,13 @@ function Finalize() {
     // const [allChilds, setAllChilds] = useState([]);
 
     let timeStamRegex = /\d+[:]/gm;
+    let myFinalGuess = /\b[A-G]\b|#7b13|7sus2|7sus4|7Sus4|add2|add4|add9|add11|addb9|add#11|add13|aug\b|dim|dim7|maj7|m6|m7|M7|m7b5|m9|m11|m13|min\b|maj7|Maj7|maj9|maj11|maj13|mmaj7|mb5|mb6|\bM\b|sus|sus2|sus2#11|sus2b6|sus4|\bBm\b|\bEm\b|\bFm|\bAm\b|\bCm\b|\bDm\b|\bGm\b/;
 
     let finalized;
     let onlyVerses = [];
     let theChilds;
+
+    let passableIndex = [];
     function collectChilds() {
         let allChilds = [];
         if (document.querySelector(".ql-editor") != null && document.querySelector(".ql-editor").children.length > 1) {
@@ -35,11 +38,85 @@ function Finalize() {
                     if (timeStamRegex.test(theChilds[i].innerText)) {
                         const grouped = []
                         // onlyVerses.push(theChilds[i].innerText)
-                        grouped.push(theChilds[i].innerText)
+                        timeStamRegex.test(theChilds[i].innerText) == true && grouped.push(theChilds[i].innerText)
+                        timeStamRegex.test(theChilds[i+1].innerText) == false && grouped.push(theChilds[i+1].innerText)
                         // alert(typeof theChilds[i+3].innerText)
-                        theChilds[i + 1] != null && timeStamRegex.test(theChilds[i + 1].innerText) == false && grouped.push(theChilds[i + 1].innerText);
-                        theChilds[i + 2] != null && timeStamRegex.test(theChilds[i + 2].innerText) == false && grouped.push(theChilds[i + 2].innerText);
-                        theChilds[i + 3] != null && theChilds[i+3].innerHTML.includes("[") == false && timeStamRegex.test(theChilds[i + 3].innerText) == false && grouped.push(theChilds[i + 3].innerText);
+
+                        // for(let j = 1; j<20; j++){
+                        //     theChilds[i + j] != null && timeStamRegex.test(theChilds[i + j].innerText) == false && grouped.push(theChilds[i + j].innerText);
+                        // }
+
+                        
+                        // console.log("hey"+passableIndex)
+
+                        for(let l = 0; l < passableIndex.length; l++){
+                            console.log("HEY "+theChilds[passableIndex[l]].innerText)
+                        }
+
+                        function isPassable(){
+                            for(let l = 0; l < passableIndex.length; l++){
+                                return i = l ? true : false;
+                            }
+                            return true;
+                        }
+                        // if(passableIndex.incl)
+                        // if(passableIndex.length > 0 && isPassable){
+
+                        // for(let o = 1; o < 4; o++){
+                        //     if(theChilds[i + o] != null && timeStamRegex.test(theChilds[i + o].innerText) == false && myFinalGuess.test(theChilds[i + o].innerHTML) == true){
+                        //         grouped.push(theChilds[i + o].innerText);
+                        //         passableIndex.push(i+o)
+                        //     }
+                        // }
+
+                        if(theChilds[i + 1] != null && timeStamRegex.test(theChilds[i + 1].innerText) == false && myFinalGuess.test(theChilds[i + 1].innerHTML) == true){
+                            grouped.push(theChilds[i + 1].innerText);
+                            passableIndex.push(i+1)
+                        }
+                        if(theChilds[i + 2] != null && timeStamRegex.test(theChilds[i + 2].innerText) == false && myFinalGuess.test(theChilds[i + 1].innerHTML) == true){
+                            grouped.push(theChilds[i + 2].innerText);
+                            passableIndex.push(i+2)
+                        }
+                        if(theChilds[i + 3] != null && timeStamRegex.test(theChilds[i + 3].innerText) == false && myFinalGuess.test(theChilds[i + 1].innerHTML) == true){
+                            grouped.push(theChilds[i + 3].innerText);
+                            passableIndex.push(i+3)
+                        }
+                        if(theChilds[i + 4] != null && timeStamRegex.test(theChilds[i + 2].innerText) == false && myFinalGuess.test(theChilds[i + 1].innerHTML) == true){
+                            grouped.push(theChilds[i + 4].innerText);
+                            passableIndex.push(i+4)
+                        }
+                        // if(theChilds[i + 5] != null && timeStamRegex.test(theChilds[i + 2].innerText) == false && myFinalGuess.test(theChilds[i + 1].innerHTML) == true){
+                        //     grouped.push(theChilds[i + 4].innerText);
+                        //     passableIndex.push(i+4)
+                        // }
+                        // if(theChilds[i + 4] != null && timeStamRegex.test(theChilds[i + 2].innerText) == false && myFinalGuess.test(theChilds[i + 1].innerHTML) == true){
+                        //     grouped.push(theChilds[i + 4].innerText);
+                        //     passableIndex.push(i+4)
+                        // }
+
+
+                        // if(theChilds[i + 1] != null && timeStamRegex.test(theChilds[i + 1].innerText) == false && myFinalGuess.test(theChilds[i + 1].innerHTML) == false){
+                        //     grouped.push(theChilds[i + 1].innerText);
+                        //     passableIndex.push(i+1)
+                        // }
+                        // if(theChilds[i + 2] != null && timeStamRegex.test(theChilds[i + 2].innerText) == false && myFinalGuess.test(theChilds[i + 2].innerHTML) == false){
+                        //     grouped.push(theChilds[i + 2].innerText);
+                        //     passableIndex.push(i+2)
+                        // }
+                        // if(theChilds[i + 3] != null && timeStamRegex.test(theChilds[i + 3].innerText) == false && myFinalGuess.test(theChilds[i + 3].innerHTML) == false){
+                        //     grouped.push(theChilds[i + 3].innerText);
+                        //     passableIndex.push(i+3)
+                        // }
+                        // if(theChilds[i + 4] != null && timeStamRegex.test(theChilds[i + 4].innerText) == false && myFinalGuess.test(theChilds[i + 4].innerHTML) == false){
+                        //     grouped.push(theChilds[i + 4].innerText);
+                        //     passableIndex.push(i+4)
+                        // }
+
+                        // theChilds[i + 2] != null && timeStamRegex.test(theChilds[i + 2].innerText) == false && grouped.push(theChilds[i + 2].innerText);
+                        // theChilds[i + 3] != null && timeStamRegex.test(theChilds[i + 3].innerText) == false && grouped.push(theChilds[i + 3].innerText);
+                    // }
+
+                        // theChilds[i + 3] != null && theChilds[i+3].innerHTML.includes("[") == false && timeStamRegex.test(theChilds[i + 3].innerText) == false && grouped.push(theChilds[i + 3].innerText);
                         onlyVerses.push(grouped);
                         console.log(onlyVerses);
                         setTheVerses(() => {
@@ -146,7 +223,7 @@ function Finalize() {
             <SimpleGrid cols={2} sx={{width: "100%"}} mr={20} ml={20}>
                 <div className="theEditor">
                     {/* <Editor editorState={editorState} onChange={setEditorState} /> */}
-                    <ReactQuill placeholder="Paste the prepared text here" style={{ whiteSpace: "pre" }} id="theEditorBox" modules={{ toolbar: false }}  formats={[]} value={value} onChange={setValue} />
+                    <ReactQuill placeholder="Paste the prepared text here" style={{ whiteSpace: "pre", height: "85vh" }} id="theEditorBox" modules={{ toolbar: false }}  formats={[]} value={value} onChange={setValue} />
                 </div>
 
                 {/* <Prism> */}

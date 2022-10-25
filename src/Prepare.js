@@ -19,7 +19,7 @@ function Prepare(props) {
             // console.log(thePrepareSeekers[i])
             // console.log(myFinalGuess.test)
             if (myFinalGuess.test(thePrepareSeekers[i].outerHTML) == true) {
-                allChilds.push(thePrepareSeekers[i].outerHTML.replace(/<p>/g, `${(i>0) ? "<br><br><div><br>" : "<div>"}`));
+                allChilds.push(thePrepareSeekers[i].outerHTML.replace(/<p>/g, `${(i>0) ? "<div>" : "<div>"}`));
                 // console.log(allChilds[i])/
             } else {
                 allChilds.push(thePrepareSeekers[i].outerHTML);
@@ -28,8 +28,8 @@ function Prepare(props) {
         }
 
         if(outputRef.current != ""){
-            console.log(outputRef.current.innerHtml)
             outputRef.current.innerHTML = allChilds.join("");
+            // console.log(allChilds.join("\n"))
         }
         // richEditorRef.current.editor.root.children[0] = "haha";
         // console.log(richEditorRef.current.editor.root.children)
@@ -42,7 +42,7 @@ function Prepare(props) {
             <Card sx={{ minHeight: "85vh" }} radius={"md"} ml={10} mr={10}>
                 <SimpleGrid cols={2} sx={{ width: "100%" }} mr={20} ml={20}>
                     <div className="theEditor">
-                        <ReactQuill ref={richEditorRef} placeholder="Paste the transcribed text here" style={{ whiteSpace: "pre" }} id="theEditorBox" modules={{ toolbar: false }} formats={[]} value={value} onChange={setValue} />
+                        <ReactQuill  ref={richEditorRef} placeholder="Paste the transcribed text here" style={{ whiteSpace: "pre", height: "75vh" }} id="theEditorBox" modules={{ toolbar: false }} formats={[]} value={value} onChange={setValue} />
                     </div>
                     <div className="theOutPut" ref={outputRef}>
                         {/* This will be the prepared <br></br>

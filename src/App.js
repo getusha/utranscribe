@@ -9,20 +9,22 @@ import { IconFileExport, IconKeyboardShow, IconLoader, IconTextCaption } from "@
 import Transcribe from "./Transcribe";
 import Prepare from "./Prepare";
 import { Link } from "react-router-dom";
+import NewPrepare from "./NewPrepare";
+import CleanFinalize from "./CleanFinalize";
 
 function App() {
   return (
     <>
-      <Tabs color="red" variant="pills" p={20} radius="xl" sx={{ width: "80%"}} mr={"auto"} ml={"auto"} pl={100} pr={100} pt={20} pb={10} defaultValue={"transcribe"}>
+      <Tabs color="red" variant="pills" p={20} radius="xl" sx={{ width: "80%"}} mr={"auto"} ml={"auto"} pl={100} pr={100} pt={20} pb={10} defaultValue={"prepare"}>
         
         <Card radius={"md"} >
 
         <Tabs.List>
           <Link to={"/"}>
-          <Tabs.Tab p={10}  value="transcribe" icon={<IconTextCaption size={14} />}>Transcribe</Tabs.Tab>
-          </Link>
-          <Link to={"/prepare"}>
           <Tabs.Tab p={10} value="prepare" icon={<IconLoader size={14} />}>Prepare</Tabs.Tab>
+          </Link>
+          <Link to={"/transcribe"}>
+          <Tabs.Tab p={10}  value="transcribe" icon={<IconTextCaption size={14} />}>Transcribe</Tabs.Tab>
           </Link>
           <Link to={"/finalize"}>
           <Tabs.Tab p={10} value="finalize" icon={<IconFileExport size={14} />}>Finalize</Tabs.Tab>
@@ -36,9 +38,11 @@ function App() {
       </Tabs>
 
       <Routes>
-        <Route path="/" element={<Transcribe />} />
-        <Route path="/prepare" element={<Prepare />} />
-        <Route path="/finalize" element={<Finalize />} />
+        <Route path="/" element={<Prepare />} />
+        <Route path="/transcribe" element={<Transcribe />} />
+        <Route path="/finalize" element={<CleanFinalize />} />
+        {/* <Route path="/new" element={<NewPrepare />} /> */}
+        {/* <Route path="/haha" element={<CleanFinalize />} /> */}
         {/* <Route path="/" element={<Finalize />} /> */}
       </Routes>
       {/* <Finalize /> */}
