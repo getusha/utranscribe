@@ -101,7 +101,7 @@ const CleanFinalize = () => {
                                             <br />
                                             <br/>
                                         </span> :
-                                        <span>{`<span class="lystyle" data-timestamp="${line[0]}">`}
+                                        <span>{`<span class="lystyle" data-timestamp="${line[0].replace(/\s/g, "")}">`}
                                             {line.slice(1).map((l) => {
                                                 {
                                                     return l.replace(/\s/g, "").length > 0 ? <span><br />{l}</span> : "";
