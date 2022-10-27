@@ -123,7 +123,7 @@ const CleanFinalize = () => {
                             )
                         })
                     }
-                    {`[bookmarkcwz]`}
+                    {`[/bookmarkcwz]`}
                 </Card>
 
             </SimpleGrid>
