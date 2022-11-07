@@ -63,7 +63,7 @@ function Transcribe(props) {
         const totalSecond = playerRef.current.getDuration();
         const theProgress = (playedSeconds / totalSecond) * 100;
 
-        setProgressInSeconds(playedSeconds)
+        setProgressInSeconds(playedSeconds+2)
         console.log(progressInSeconds)
 
         let theTimeStamp = new Date(playedSeconds * 1000).toISOString().substring(11, 19);
